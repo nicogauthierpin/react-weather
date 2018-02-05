@@ -1,26 +1,62 @@
 import React from 'react';
-import './App.css';
+import DayBox from './components/DayBox';
+import './css/App.css';
+import './css/weather-icons.min.css';
 
 
-function DayBox(props) {
-  return <li><strong>{props.day}</strong><br/>High:{props.high}&deg; | Low:{props.low}&deg; </li>;
-}
+let initialState = [
+    {
+      day : 'Monday',
+      high : '25',
+      low : '14'
+    },
+    {
+      day : 'Tuesday',
+      high : '28',
+      low : '12'
+    },
+    {
+      day : 'Wednesday',
+      high : '29',
+      low : '16'
+    },
+    {
+      day : 'Thursday',
+      high : '23',
+      low : '13'
+    },
+    {
+      day : 'Friday',
+      high : '20',
+      low : '9'
+    },
+    {
+      day : 'Saturday',
+      high : '18',
+      low : '8'
+    },
+    {
+      day : 'Sunday',
+      high : '12',
+      low : '4'
+    }
+  ];
 
 function App() {
+  let DayBoxes = initialState.map(data => {
+    return (
+      <DayBox key={data.day} day={data.day} high={data.high} low={data.low} />
+    );
+  });
+
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Weather</h1>
       </header>
-      <ul>
-        <DayBox day="Monday" high="25" low="14" />
-        <DayBox day="Tuesday" high="28" low="12"/>
-        <DayBox day="Wednesday" high="21" low="9"/>
-        <DayBox day="Thursday" high="26" low="11"/>
-        <DayBox day="Friday" high="22" low="13"/>
-        <DayBox day="Saturday" high="19" low="8"/>
-        <DayBox day="Sunday" high="23" low="23"/>
-      </ul>
+      <div>
+        {DayBoxes}
+      </div>
     </div>
   );
 }
